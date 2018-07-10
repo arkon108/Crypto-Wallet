@@ -1,6 +1,6 @@
 
-chrome.runtime.onStartup.addListener((event) => {
-  console.info('OnStartup');
+chrome.runtime.onInstalled.addListener((event) => {
+  console.info('OnInstalled');
   console.log(event);
 
   // if there are no currency for showing prices, default to USD
@@ -45,6 +45,7 @@ class Wallet {
   static add(coin, amount) {
     const that = this;
     chrome.storage.local.get('assets', data => {
+      data.assets = data.assets || {}; 
       data.assets[coin] = parseFloat(amount);
       chrome.storage.local.set({ assets: data.assets }, () => that.show());
     });

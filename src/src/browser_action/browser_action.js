@@ -123,7 +123,11 @@ document.querySelector("#add-new form").addEventListener('submit', event => {
     console.info('form values');
     let amount = event.target.querySelector('input').value;
     let coin = event.target.querySelector('select').value;
+    console.log(amount, coin);
     if (amount.length && coin.length) {
         chrome.runtime.sendMessage({add: {coin, amount}});
+        document.querySelector("#add-new button").click();
+        event.target.querySelector('input').value = null;
+        event.target.querySelector('select').value = '';
     }
 });

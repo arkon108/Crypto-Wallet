@@ -29,10 +29,9 @@
 		<div id="add-new">
 			<button>+</button>
 			<form hidden>
-				<input type="text" placeholder="Enter the amount">
-				<select>
-					<option value=""> -= choose a coin =-</option>
-				</select>
+				<input type="number" placeholder="Enter the amount">
+				<input type="text" placeholder="Enter cryptocurrency name" list="cryptolist" autocomplete="off">
+				<datalist id="cryptolist"></datalist>
 				<button type="submit">Save</button>
 			</form>
 		</div>

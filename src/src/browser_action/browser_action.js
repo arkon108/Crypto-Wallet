@@ -8,17 +8,27 @@ chrome.runtime.onMessage.addListener((request, sender) => {
   
     // fill in the <select> for adding of currencies
     if (request.currencies) {
-        console.log('got the currencies');
-        console.log(request.currencies);
-        let currencyList = document.querySelector('#add-new form select');
-        let option;
 
-        for(let currency in request.currencies) {
-            option = document.createElement('option');
-            option.value = request.currencies[currency].Symbol;
-            option.innerText = request.currencies[currency].FullName;
-            currencyList.appendChild(option);
+        let currencies = [];
+        for (let currency in request.currencies) {
+            currencies.push(request.currencies[currency].Symbol);
         }
+
+        currencies.sort((a,b) => {
+            if (a < b) return -1;
+            else if (b > a) return 1;
+            return 0;
+        });
+
+        let currencyList = document.querySelector('#add-new form select');
+        let cryptos = document.getElementById('cryptolist');
+        
+        currencies.forEach(currency => {
+            let option = document.createElement('option');
+            option.value = currency;
+            option.innerText = request.currencies[currency].FullName;
+            cryptos.appendChild(option);            
+        });
     }
 
     if (request.wallet && request.currency) {
@@ -121,13 +131,12 @@ document.querySelector("#dash table").addEventListener('click', event => {
 document.querySelector("#add-new form").addEventListener('submit', event => {
     event.preventDefault();
     console.info('form values');
-    let amount = event.target.querySelector('input').value;
-    let coin = event.target.querySelector('select').value;
+    let amount = event.target.querySelector('input[type="number"]').value;
+    let coin = event.target.querySelector('input[type="text"]').value;
     console.log(amount, coin);
     if (amount.length && coin.length) {
         chrome.runtime.sendMessage({add: {coin, amount}});
         document.querySelector("#add-new button").click();
-        event.target.querySelector('input').value = null;
-        event.target.querySelector('select').value = '';
+        document.querySelectorAll('input').forEach(i => i.value = '');
     }
 });

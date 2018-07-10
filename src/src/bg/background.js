@@ -20,8 +20,7 @@ chrome.runtime.onMessage.addListener((request, sender) => {
     const { coin, amount } = request.add;
     Wallet.add(coin, amount);
   }
-
-  // 
+  
   if (request.remove) {
     Wallet.remove(request.remove);
   }

@@ -53,7 +53,7 @@ chrome.runtime.onMessage.addListener((request, sender) => {
 
         table.innerHTML = ''; 
         let row = document.createElement('tr');
-        row.innerHTML = "<th>Crypto</th><th>Amount</th><th>Value</th><th><!-- actions --></th>";
+        row.innerHTML = '<th width="20%">Crypto</th><th>Amount</th><th>Value</th><th width="25%"><!-- actions --></th>';
         table.appendChild(row);
 
         request.wallet.forEach(asset => {

@@ -1,0 +1,139 @@
+$dark: #2b3441;
+$light: rgba(255,255,255,.8);
+$lblue: #9caac1;
+
+@mixin small-uc {
+    text-transform: uppercase;
+    font-size: 70%;
+}
+
+@mixin buttons {
+    background: transparent;
+    border: 1px solid $light;
+    color: $light;
+    border-radius: 3px;
+
+    &:hover {
+        color: $dark;
+        background: $light;
+    }
+}
+
+:focus {
+    outline: none;
+}
+
+body {
+    background-color: $dark;
+    color: $light;
+}
+
+button {
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+table {
+    width: 100%;
+    tr {
+        th {
+            @include small-uc();
+            color: $lblue;
+        }
+
+        td {
+            font-size: 110%;
+            button {
+                
+                margin-left: 2px;
+                @include small-uc();
+                @include buttons();
+                
+            }
+        }
+    }
+}
+
+#btn-options {
+    @include small-uc();
+    text-decoration: none;
+    color: $light;
+    position: absolute;
+    top: 50px;
+    right: 20px;
+    opacity: .8;
+    &:hover {
+        text-decoration: underline;
+        color: $lblue; 
+    }
+
+}
+
+#add-new {
+    text-align: center;
+
+    > button {
+        @include buttons();
+        font-size: 200%;
+        line-height: 140%;
+        width: 40px;
+    }
+
+    form {
+        button {
+            @include small-uc();
+            @include buttons();
+        }
+        input {
+            text-align: left;
+        }
+    }
+}
+
+@keyframes sk-stretchdelay {
+    0%, 40%, 100% { 
+        transform: scaleY(0.4);
+    }  20% { 
+        transform: scaleY(1.0);
+    }
+}
+
+#loader {
+    margin: 100px auto;
+    width: 50px;
+    height: 40px;
+    text-align: center;
+    font-size: 10px;
+
+    > div {
+        background-color: $lblue;
+        height: 100%;
+        width: 6px;
+        display: inline-block;
+        
+        -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
+        animation: sk-stretchdelay 1.2s infinite ease-in-out;
+        }
+    
+    .rect2 {
+        -webkit-animation-delay: -1.1s;
+        animation-delay: -1.1s;
+    }
+
+    .rect3 {
+        -webkit-animation-delay: -1.0s;
+        animation-delay: -1.0s;
+    }
+
+    .rect4 {
+        -webkit-animation-delay: -0.9s;
+        animation-delay: -0.9s;
+    }
+
+    .rect5 {
+        -webkit-animation-delay: -0.8s;
+        animation-delay: -0.8s;
+    }
+}
+    

@@ -76,8 +76,8 @@ class Wallet {
             wallet.push([coin, assets[coin], data[coin][currency]]);
           }
           wallet.sort((first, next) => {
-            if (first[1] > next[1]) return -1;
-            if (next[1] > first[1]) return 1;
+            if (first[1]*first[2] > next[1]*next[2]) return -1;
+            if (next[1]*next[2] > first[1]*first[2]) return 1;
             return 0;
           });
           chrome.runtime.sendMessage({currency, wallet});

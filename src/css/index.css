@@ -21,6 +21,7 @@ table tr th {
 }
 table tr td {
   font-size: 110%;
+  text-align: right;
 }
 table tr td button {
   margin-left: 2px;
@@ -34,6 +35,9 @@ table tr td button {
 table tr td button:hover {
   color: #2b3441;
   background: rgba(255, 255, 255, 0.8);
+}
+table tr td:first-child {
+  text-align: left;
 }
 
 #btn-options {

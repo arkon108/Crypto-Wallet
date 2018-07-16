@@ -44,12 +44,16 @@ table {
 
         td {
             font-size: 110%;
+            text-align: right;
             button {
                 
                 margin-left: 2px;
                 @include small-uc();
                 @include buttons();
                 
+            }
+            &:first-child {
+                text-align: left;
             }
         }
     }

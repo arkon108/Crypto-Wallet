@@ -53,7 +53,7 @@ chrome.runtime.onMessage.addListener((request, sender) => {
 
         table.innerHTML = ''; 
         let row = document.createElement('tr');
-        row.innerHTML = '<th width="20%">Crypto</th><th>Amount</th><th>Value</th><th width="25%"><!-- actions --></th>';
+        row.innerHTML = '<th width="20%">Crypto</th><th>Amount</th><th>Value</th><th width="30%"><!-- actions --></th>';
         table.appendChild(row);
 
         request.wallet.forEach(asset => {
@@ -61,7 +61,7 @@ chrome.runtime.onMessage.addListener((request, sender) => {
             row.id = `row-${asset[0]}`;
             row.innerHTML = `
             <td><abbr title="${asset[2]}">${asset[0]}</abbr></td>
-            <td>${asset[1]}</td>
+            <td>${asset[1].toFixed(8)}</td>
             <td>${(asset[1]*asset[2]).toFixed(2)} ${request.currency}</td>
             <td><button value="row-${asset[0]}-edit">edit</button><button value="${asset[0]}">delete</button></td>`;
             table.appendChild(row);
@@ -105,7 +105,7 @@ document.querySelector("#dash table").addEventListener('click', event => {
     console.log(event.target); 
 
     if (event.target.tagName == "BUTTON") {
-        switch(event.target.innerText) {
+        switch(event.target.innerText.toLowerCase()) {
             case 'edit':
                 console.info('clicked the edit button');
                 console.log(event.target.value);

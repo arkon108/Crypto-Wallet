@@ -48,38 +48,38 @@ chrome.runtime.onMessage.addListener((request, sender) => {
             document.getElementById('btn-options').hidden = false;
         }, 300);
         
-
         const table = document.querySelector('#dash table');
-        let row, total = 0;
+        let total = 0;
 
         table.innerHTML = ''; 
-        row = document.createElement('tr');
-        row.innerHTML = "<th>Crypto</th><th>Amount</th><th>Worth</th><th><!-- actions --></th>";
+        let row = document.createElement('tr');
+        row.innerHTML = "<th>Crypto</th><th>Amount</th><th>Value</th><th><!-- actions --></th>";
         table.appendChild(row);
 
-        for (let asset in request.wallet) {
-            row = document.createElement('tr');
-            row.id = `row-${asset}`;
+        request.wallet.forEach(asset => {
+            let row = document.createElement('tr');
+            row.id = `row-${asset[0]}`;
             row.innerHTML = `
-            <td><abbr title="${request.wallet[asset].price}">${asset}</abbr></td>
-            <td>${request.wallet[asset].amount}</td>
-            <td>${request.wallet[asset].value.toFixed(2)} ${request.currency}</td>
-            <td><button value="row-${asset}-edit">edit</button><button value="${asset}">delete</button></td>`;
+            <td><abbr title="${asset[2]}">${asset[0]}</abbr></td>
+            <td>${asset[1]}</td>
+            <td>${(asset[1]*asset[2]).toFixed(2)} ${request.currency}</td>
+            <td><button value="row-${asset[0]}-edit">edit</button><button value="${asset[0]}">delete</button></td>`;
             table.appendChild(row);
 
             // hidden edit row
             row = document.createElement('tr');
-            row.id = `row-${asset}-edit`;
+            row.id = `row-${asset[0]}-edit`;
             row.hidden = true;
             row.innerHTML = `
-            <td><abbr title="${request.wallet[asset].price}">${asset}</abbr></td>
-            <td colspan="2"><input type="text" value="${request.wallet[asset].amount}"></td>
-            <td><button value="${asset}">save</button> <button value="row-${asset}">cancel</button></td>
+            <td><abbr title="${asset[2]}">${asset[0]}</abbr></td>
+            <td colspan="2"><input type="text" value="${asset[1]}"></td>
+            <td><button value="${asset[0]}">save</button> <button value="row-${asset[0]}">cancel</button></td>
             `;
             table.appendChild(row);
 
-            total += request.wallet[asset].value;
-        }
+            total += asset[1]*asset[2];
+        });
+        
         document.querySelector('#dash h1').innerText = `${total.toFixed(2)} ${request.currency}`;
     }
     

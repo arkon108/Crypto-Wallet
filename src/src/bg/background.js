@@ -65,20 +65,22 @@ class Wallet {
   
         // fetch the prices for stored assets
         let coins = Object.keys(data.assets);
-        const wallet = {};
+        let wallet = [];
         const currency = data.currency;
+        const assets = data.assets;
   
-        for (let coin in data.assets) {
-          wallet[coin] = { amount: data.assets[coin] };
-        }
-        
         // fetch the prices and calculate the totals 
         CryptoList.prices(coins, data.currency).then((data) => {
+          
           for (let coin in data) {
-            wallet[coin].value = wallet[coin].amount * data[coin][currency];
-            wallet[coin].price = `${data[coin][currency]} ${currency}`;
+            wallet.push([coin, assets[coin], data[coin][currency]]);
           }
-          chrome.runtime.sendMessage({wallet, currency});
+          wallet.sort((first, next) => {
+            if (first[1] > next[1]) return -1;
+            if (next[1] > first[1]) return 1;
+            return 0;
+          });
+          chrome.runtime.sendMessage({currency, wallet});
         });
       } else {
         chrome.runtime.sendMessage({nowallet: true});

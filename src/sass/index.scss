@@ -19,6 +19,17 @@ $lblue: #9caac1;
     }
 }
 
+@mixin options {
+    @include small-uc();
+    text-decoration: none;
+    color: $light;
+    opacity: .8;
+    &:hover {
+        text-decoration: underline;
+        color: $lblue; 
+    }
+}
+
 :focus {
     outline: none;
 }
@@ -26,12 +37,30 @@ $lblue: #9caac1;
 body {
     background-color: $dark;
     color: $light;
+    padding: 10px;
+    height: auto;
+    width: 400px;
+    font-family: Helvetica, Ubuntu, Arial, sans-serif;
+}
+
+h1 {
+    font-size: 2em;
+}
+
+#intro a {
+    @include options();
 }
 
 button {
     &:hover {
         cursor: pointer;
     }
+}
+
+hr {
+    border: none;
+    border-bottom: 1px dotted;
+    opacity: .5;
 }
 
 table {
@@ -45,6 +74,11 @@ table {
         td {
             font-size: 110%;
             text-align: right;
+
+            input {
+                width: 100%;
+            }
+
             button {
                 
                 margin-left: 2px;
@@ -60,18 +94,10 @@ table {
 }
 
 #btn-options {
-    @include small-uc();
-    text-decoration: none;
-    color: $light;
+    @include options();
     position: absolute;
     top: 50px;
     right: 20px;
-    opacity: .8;
-    &:hover {
-        text-decoration: underline;
-        color: $lblue; 
-    }
-
 }
 
 #add-new {

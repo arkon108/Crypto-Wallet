@@ -5,10 +5,36 @@
 body {
   background-color: #2b3441;
   color: rgba(255, 255, 255, 0.8);
+  padding: 10px;
+  height: auto;
+  width: 400px;
+  font-family: Helvetica, Ubuntu, Arial, sans-serif;
+}
+
+h1 {
+  font-size: 2em;
+}
+
+#intro a {
+  text-transform: uppercase;
+  font-size: 70%;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.8);
+  opacity: 0.8;
+}
+#intro a:hover {
+  text-decoration: underline;
+  color: #9caac1;
 }
 
 button:hover {
   cursor: pointer;
+}
+
+hr {
+  border: none;
+  border-bottom: 1px dotted;
+  opacity: 0.5;
 }
 
 table {
@@ -22,6 +48,9 @@ table tr th {
 table tr td {
   font-size: 110%;
   text-align: right;
+}
+table tr td input {
+  width: 100%;
 }
 table tr td button {
   margin-left: 2px;
@@ -45,10 +74,10 @@ table tr td:first-child {
   font-size: 70%;
   text-decoration: none;
   color: rgba(255, 255, 255, 0.8);
+  opacity: 0.8;
   position: absolute;
   top: 50px;
   right: 20px;
-  opacity: 0.8;
 }
 #btn-options:hover {
   text-decoration: underline;

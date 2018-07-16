@@ -29,9 +29,25 @@ chrome.runtime.onMessage.addListener((request, sender) => {
         });
     }
 
+    if (request.nowallet) {
+        setTimeout(() => {
+            document.getElementById('loader').hidden = true;
+            document.getElementById('intro').hidden = false;
+            document.getElementById('dash').hidden = true;
+            document.getElementById('add-new').hidden = false;
+            document.getElementById('btn-options').hidden = false;
+        }, 300);        
+    }
+
     if (request.wallet && request.currency) {
-        document.getElementById('intro').hidden = true;
-        document.getElementById('dash').hidden = false;
+        setTimeout(() => {
+            document.getElementById('loader').hidden = true;
+            document.getElementById('intro').hidden = true;
+            document.getElementById('dash').hidden = false;
+            document.getElementById('add-new').hidden = false;
+            document.getElementById('btn-options').hidden = false;
+        }, 300);
+        
 
         const table = document.querySelector('#dash table');
         let row, total = 0;

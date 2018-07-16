@@ -80,6 +80,8 @@ class Wallet {
           }
           chrome.runtime.sendMessage({wallet, currency});
         });
+      } else {
+        chrome.runtime.sendMessage({nowallet: true});
       }
     });
   }

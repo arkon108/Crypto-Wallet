@@ -6,7 +6,6 @@ chrome.runtime.onMessage.addListener((request, sender) => {
     console.info('OnMessage inside background');
     console.log(request, sender);
   
-    // fill in the <select> for adding of currencies
     if (request.currencies) {
 
         let currencies = [];
@@ -20,7 +19,6 @@ chrome.runtime.onMessage.addListener((request, sender) => {
             return 0;
         });
 
-        let currencyList = document.querySelector('#add-new form select');
         let cryptos = document.getElementById('cryptolist');
         
         currencies.forEach(currency => {

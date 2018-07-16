@@ -27,6 +27,7 @@ chrome.runtime.onMessage.addListener((request, sender) => {
             option.innerText = request.currencies[currency].FullName;
             cryptos.appendChild(option);            
         });
+        document.getElementById('add-new').hidden = false;
     }
 
     if (request.nowallet) {
@@ -34,7 +35,6 @@ chrome.runtime.onMessage.addListener((request, sender) => {
             document.getElementById('loader').hidden = true;
             document.getElementById('intro').hidden = false;
             document.getElementById('dash').hidden = true;
-            document.getElementById('add-new').hidden = false;
             document.getElementById('btn-options').hidden = false;
         }, 300);        
     }
@@ -44,7 +44,6 @@ chrome.runtime.onMessage.addListener((request, sender) => {
             document.getElementById('loader').hidden = true;
             document.getElementById('intro').hidden = true;
             document.getElementById('dash').hidden = false;
-            document.getElementById('add-new').hidden = false;
             document.getElementById('btn-options').hidden = false;
         }, 300);
         

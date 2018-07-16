@@ -61,10 +61,10 @@ class Wallet {
   static show() {
     // decide whether to show the intro page or dashboard by loading stored assets
     chrome.storage.local.get(['assets', 'currency'], (data) => {
-      if (data.assets) {
-  
+      if (data.assets && Object.keys(data.assets).length > 0) {
+        
         // fetch the prices for stored assets
-        let coins = Object.keys(data.assets);
+        const coins = Object.keys(data.assets);
         let wallet = [];
         const currency = data.currency;
         const assets = data.assets;

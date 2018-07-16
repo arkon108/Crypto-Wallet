@@ -42,7 +42,7 @@ table {
 }
 table tr th {
   text-transform: uppercase;
-  font-size: 70%;
+  font-size: 85%;
   color: #9caac1;
 }
 table tr td {
@@ -102,7 +102,7 @@ table tr td:first-child {
 }
 #add-new form button {
   text-transform: uppercase;
-  font-size: 70%;
+  font-size: 120%;
   background: transparent;
   border: 1px solid rgba(255, 255, 255, 0.8);
   color: rgba(255, 255, 255, 0.8);
@@ -114,6 +114,8 @@ table tr td:first-child {
 }
 #add-new form input {
   text-align: left;
+  padding: 5px 0 5px 10px;
+  border-radius: 4px;
 }
 
 @keyframes sk-stretchdelay {

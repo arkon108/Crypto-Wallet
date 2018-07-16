@@ -2,9 +2,9 @@ $dark: #2b3441;
 $light: rgba(255,255,255,.8);
 $lblue: #9caac1;
 
-@mixin small-uc {
+@mixin sized-uc($size: 70%) {
     text-transform: uppercase;
-    font-size: 70%;
+    font-size: $size;
 }
 
 @mixin buttons {
@@ -20,7 +20,7 @@ $lblue: #9caac1;
 }
 
 @mixin options {
-    @include small-uc();
+    @include sized-uc();
     text-decoration: none;
     color: $light;
     opacity: .8;
@@ -67,7 +67,7 @@ table {
     width: 100%;
     tr {
         th {
-            @include small-uc();
+            @include sized-uc(85%);
             color: $lblue;
         }
 
@@ -82,7 +82,7 @@ table {
             button {
                 
                 margin-left: 2px;
-                @include small-uc();
+                @include sized-uc();
                 @include buttons();
                 
             }
@@ -112,11 +112,13 @@ table {
 
     form {
         button {
-            @include small-uc();
+            @include sized-uc(120%);
             @include buttons();
         }
         input {
             text-align: left;
+            padding: 5px 0 5px 10px;
+            border-radius: 4px;
         }
     }
 }

@@ -3,70 +3,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Crypto Wallet</title>
-		<style type="text/css">
-			body {
-				padding: 10px;
-				height: auto;
-				width: 400px;
-				font-family: Helvetica, Ubuntu, Arial, sans-serif;
-			}
-			h1 {
-				font-size: 2em;
-			}
-
-			#loader {
-			margin: 100px auto;
-			width: 50px;
-			height: 40px;
-			text-align: center;
-			font-size: 10px;
-			}
-
-			#loader > div {
-			background-color: #333;
-			height: 100%;
-			width: 6px;
-			display: inline-block;
-			
-			-webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
-			animation: sk-stretchdelay 1.2s infinite ease-in-out;
-			}
-
-			#loader .rect2 {
-			-webkit-animation-delay: -1.1s;
-			animation-delay: -1.1s;
-			}
-
-			#loader .rect3 {
-			-webkit-animation-delay: -1.0s;
-			animation-delay: -1.0s;
-			}
-
-			#loader .rect4 {
-			-webkit-animation-delay: -0.9s;
-			animation-delay: -0.9s;
-			}
-
-			#loader .rect5 {
-			-webkit-animation-delay: -0.8s;
-			animation-delay: -0.8s;
-			}
-
-			@-webkit-keyframes sk-stretchdelay {
-			0%, 40%, 100% { -webkit-transform: scaleY(0.4) }  
-			20% { -webkit-transform: scaleY(1.0) }
-			}
-
-			@keyframes sk-stretchdelay {
-			0%, 40%, 100% { 
-				transform: scaleY(0.4);
-				-webkit-transform: scaleY(0.4);
-			}  20% { 
-				transform: scaleY(1.0);
-				-webkit-transform: scaleY(1.0);
-			}
-			}
-		</style>		
+		<link rel="stylesheet" type="text/css" href="../../css/main.css">		
 	</head>
 	<body>
 		<div id="loader">
@@ -88,7 +25,10 @@
 			<h1></h1>
 			<hr>
 			<table></table>
+			<hr>
 		</div>
+
+		
 
 		<a id="btn-options" href="/src/options/index.html" target="_blank" hidden>Options</a>
 

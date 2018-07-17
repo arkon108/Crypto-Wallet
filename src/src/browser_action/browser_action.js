@@ -3,19 +3,19 @@ chrome.runtime.sendMessage({ popup: "open", show: true });
 
 // listener for messages from background
 chrome.runtime.onMessage.addListener((request, sender) => {
-    console.info('OnMessage inside background');
+    console.info('OnMessage inside popup');
     console.log(request, sender);
   
     if (request.currencies) {
-
+        console.log('got currencies')
         let currencies = [];
         for (let currency in request.currencies) {
             currencies.push(request.currencies[currency].Symbol);
         }
 
         currencies.sort((a,b) => {
-            if (a < b) return -1;
-            else if (b > a) return 1;
+            if (parseInt(request.currencies[b].SortOrder) > parseInt(request.currencies[a].SortOrder)) return -1;
+            else if (parseInt(request.currencies[a].SortOrder) < parseInt(request.currencies[b].SortOrder)) return 1;
             return 0;
         });
 

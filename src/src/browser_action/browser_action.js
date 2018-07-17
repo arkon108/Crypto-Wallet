@@ -7,7 +7,9 @@ chrome.runtime.onMessage.addListener((request, sender) => {
     console.log(request, sender);
   
     if (request.currencies) {
-        console.log('got currencies')
+        console.log('got currencies');
+        chrome.storage.local.set({ "list-all": request.currencies});
+
         let currencies = [];
         for (let currency in request.currencies) {
             currencies.push(request.currencies[currency].Symbol);
@@ -98,6 +100,12 @@ document.querySelector("#add-new button").addEventListener('click', event => {
     event.stopPropagation();
 });
 
+document.querySelector("#add-new a").addEventListener('click', event => {
+    document.querySelector("#add-new button").click();
+    event.stopPropagation();
+    event.preventDefault();
+});
+
 // table actions (edit/delete) click handler
 document.querySelector("#dash table").addEventListener('click', event => {
     console.info('clicked inside the table - on: ');
@@ -143,13 +151,52 @@ document.querySelector("#dash table").addEventListener('click', event => {
 // Save a new coin form handler
 document.querySelector("#add-new form").addEventListener('submit', event => {
     event.preventDefault();
+    event.stopPropagation();
     console.info('form values');
-    let amount = event.target.querySelector('input[type="number"]').value;
-    let coin = event.target.querySelector('input[type="text"]').value;
+    const amount = event.target.querySelector('input[type="number"]').value;
+    const coin = event.target.querySelector('input[type="text"]').value;
     console.log(amount, coin);
     if (amount.length && coin.length) {
         chrome.runtime.sendMessage({add: {coin, amount}});
         document.querySelector("#add-new button").click();
         document.querySelectorAll('input').forEach(i => i.value = '');
     }
+});
+
+// Input search through crypto list
+document.getElementById('cryptocurrency').addEventListener('keyup', event => {
+    const searchstr = event.target.value;
+    
+    if (searchstr.length && searchstr.length >= 3) {
+        chrome.storage.local.get('list-all', data => {
+            const list = Object.values(data['list-all']).filter(e => {
+                return (e.FullName.toLowerCase().search(searchstr) > -1);
+            });
+            list.sort((a,b) => {
+                if (parseInt(a.SortOrder) > parseInt(b.SortOrder)) return 1;
+                if (parseInt(a.SortOrder) < parseInt(b.SortOrder)) return -1;
+                return 0;
+            });
+
+            const container = document.getElementById('list-container');
+            const containerContent = list.map(e => `<li data-currency="${ e.Symbol }">${ e.FullName }</li>`);
+            container.innerHTML = containerContent.join("");
+        }); 
+    }
+});
+
+document.getElementById('list-container').addEventListener('click', event => {
+    if (event.target != event.currentTarget) {
+        const coin = event.target.getAttribute('data-currency');
+        const amount = document.querySelector('#add-new form input[type="number"]').value;
+        console.log(amount, coin);
+        if (amount.length && coin.length) {
+            chrome.runtime.sendMessage({add: {coin, amount}});
+            document.querySelector("#add-new > button").click();
+            document.querySelectorAll('input').forEach(i => i.value = '');
+            document.getElementById('list-container').innerHTML = '';
+        }
+        event.stopPropagation();
+        event.preventDefault();
+    }   
 });

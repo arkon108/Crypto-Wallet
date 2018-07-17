@@ -27,6 +27,31 @@ h1 {
   color: #9caac1;
 }
 
+#list-container {
+  overflow-y: scroll;
+  text-align: left;
+  list-style-type: none;
+  position: relative;
+  left: -23px;
+  top: -12px;
+  width: 120%;
+  height: 100px;
+}
+#list-container li {
+  text-indent: 0;
+  color: rgba(255, 255, 255, 0.8);
+  background: #2b3441;
+  padding: 2px 4px;
+  font-size: 90%;
+}
+#list-container li:hover {
+  color: #2b3441;
+  background: rgba(255, 255, 255, 0.8);
+}
+#list-container li {
+  cursor: pointer;
+}
+
 button:hover {
   cursor: pointer;
 }
@@ -100,6 +125,14 @@ table tr td:first-child {
   color: #2b3441;
   background: rgba(255, 255, 255, 0.8);
 }
+#add-new form {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #2b3441;
+}
 #add-new form button {
   text-transform: uppercase;
   font-size: 120%;
@@ -113,9 +146,27 @@ table tr td:first-child {
   background: rgba(255, 255, 255, 0.8);
 }
 #add-new form input {
-  text-align: left;
   padding: 5px 0 5px 10px;
   border-radius: 4px;
+  display: block;
+  width: 90%;
+  margin: 0 auto 10px;
+}
+#add-new form a {
+  text-transform: uppercase;
+  font-size: 70%;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.8);
+  opacity: 0.8;
+  position: absolute;
+  bottom: 10px;
+  height: 20px;
+  left: 0;
+  right: 0;
+}
+#add-new form a:hover {
+  text-decoration: underline;
+  color: #9caac1;
 }
 
 @keyframes sk-stretchdelay {

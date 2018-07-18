@@ -1,8 +1,5 @@
 
 chrome.runtime.onInstalled.addListener((event) => {
-  console.info('OnInstalled');
-  console.log(event);
-
   // if there are no currency for showing prices, default to USD
   chrome.storage.local.get('currency', (data) => {
     if (!data.currency) {
@@ -12,9 +9,6 @@ chrome.runtime.onInstalled.addListener((event) => {
 });
 
 chrome.runtime.onMessage.addListener((request, sender) => {
-  console.info('OnMessage');
-  console.log(request, sender);
-
   // store the new coin added
   if (request.add) {
     const { coin, amount } = request.add;
@@ -59,15 +53,14 @@ class Wallet {
   }
 
   static show() {
-    // decide whether to show the intro page or dashboard by loading stored assets
     chrome.storage.local.get(['assets', 'currency'], (data) => {
       if (data.assets && Object.keys(data.assets).length > 0) {
         
         // fetch the prices for stored assets
-        const coins = Object.keys(data.assets);
-        let wallet = [];
-        const currency = data.currency;
         const assets = data.assets;
+        const currency = data.currency;
+        const coins = Object.keys(assets);
+        let wallet = [];
   
         // fetch the prices and calculate the totals 
         CryptoList.prices(coins, data.currency).then((data) => {

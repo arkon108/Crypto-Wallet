@@ -9,26 +9,6 @@ chrome.runtime.onMessage.addListener((request, sender) => {
     if (request.currencies) {
         console.log('got currencies');
         chrome.storage.local.set({ "list-all": request.currencies});
-
-        let currencies = [];
-        for (let currency in request.currencies) {
-            currencies.push(request.currencies[currency].Symbol);
-        }
-
-        currencies.sort((a,b) => {
-            if (parseInt(request.currencies[b].SortOrder) > parseInt(request.currencies[a].SortOrder)) return -1;
-            else if (parseInt(request.currencies[a].SortOrder) < parseInt(request.currencies[b].SortOrder)) return 1;
-            return 0;
-        });
-
-        let cryptos = document.getElementById('cryptolist');
-        
-        currencies.forEach(currency => {
-            let option = document.createElement('option');
-            option.value = currency;
-            option.innerText = request.currencies[currency].FullName;
-            cryptos.appendChild(option);            
-        });
         document.getElementById('add-new').hidden = false;
     }
 
@@ -74,8 +54,7 @@ chrome.runtime.onMessage.addListener((request, sender) => {
             row.innerHTML = `
             <td><abbr title="${asset[2]}">${asset[0]}</abbr></td>
             <td colspan="2"><input type="text" value="${asset[1]}"></td>
-            <td><button value="${asset[0]}">save</button> <button value="row-${asset[0]}">cancel</button></td>
-            `;
+            <td><button value="${asset[0]}">save</button> <button value="row-${asset[0]}">cancel</button></td>`;
             table.appendChild(row);
 
             total += asset[1]*asset[2];
@@ -83,7 +62,6 @@ chrome.runtime.onMessage.addListener((request, sender) => {
         
         document.querySelector('#dash h1').innerText = `${total.toFixed(2)} ${request.currency}`;
     }
-    
   });
 
 // add new asset show/hide handler
@@ -165,7 +143,7 @@ document.querySelector("#add-new form").addEventListener('submit', event => {
 
 // Input search through crypto list
 document.getElementById('cryptocurrency').addEventListener('keyup', event => {
-    const searchstr = event.target.value;
+    const searchstr = event.target.value.toLowerCase();
     
     if (searchstr.length && searchstr.length >= 3) {
         chrome.storage.local.get('list-all', data => {

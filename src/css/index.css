@@ -32,10 +32,10 @@ h1 {
   text-align: left;
   list-style-type: none;
   position: relative;
-  left: -23px;
-  top: -12px;
   width: 120%;
-  height: 100px;
+  left: -25px;
+  top: 70px;
+  bottom: 20px;
 }
 #list-container li {
   text-indent: 0;

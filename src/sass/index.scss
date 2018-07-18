@@ -74,11 +74,11 @@ h1 {
 
 #list-container {
     @include list();
+    position: absolute;
     width: 120%;
     left: -25px;
     top: 70px;
     bottom: 20px;
-
     li {
         cursor: pointer;
     }

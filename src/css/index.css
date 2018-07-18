@@ -32,6 +32,7 @@ h1 {
   text-align: left;
   list-style-type: none;
   position: relative;
+  position: absolute;
   width: 120%;
   left: -25px;
   top: 70px;

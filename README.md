@@ -1,10 +1,8 @@
 Crypto Wallet
 =============
 
-A Chrome extension which offers at-a-glance view of cryptocurrency holdings. 
+A Chrome extension which offers at-a-glance view of cryptocurrency holdings in a chosen currency. 
 
-Goals
------
 
 How to use
 ----------
